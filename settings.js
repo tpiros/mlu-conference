@@ -5,4 +5,6 @@ var connection = {
   password: 'admin'
 };
 
-module.exports = connection;
+module.exports = {
+  connection: connection
+};

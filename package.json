@@ -9,7 +9,6 @@
   "author": "Tamas Piros",
   "license": "MIT",
   "dependencies": {
-    "ejs": "^2.3.3",
     "express": "^4.13.3",
     "marklogic": "^1.0.3"
   },

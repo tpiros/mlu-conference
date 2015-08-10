@@ -1,0 +1,11 @@
+{
+  "rest-api":
+  {
+    "name": "5030-mlu-conference",
+    "group": "Default",
+    "database": "mlu-conference-content",
+    "modules-database": "mlu-conference-modules",
+    "port": 5030,
+    "forests-per-host": 1
+  }
+}

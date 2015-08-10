@@ -1,0 +1,20 @@
+{
+  "name": "mlu-conference",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tamas Piros",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^2.3.3",
+    "express": "^4.13.3",
+    "marklogic": "^1.0.3"
+  },
+  "devDependencies": {
+    "bluebird": "^2.9.34",
+    "request": "^2.60.0"
+  }
+}

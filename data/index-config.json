@@ -1,0 +1,43 @@
+{
+  "range-element-index": [
+  {
+    "scalar-type": "string",
+    "namespace-uri": "",
+    "localname": "name",
+    "collation": "http://marklogic.com/collation/",
+    "range-value-positions": false,
+    "invalid-values": "reject"
+  },
+  {
+    "scalar-type": "string",
+    "namespace-uri": "",
+    "localname": "homeworld",
+    "collation": "http://marklogic.com/collation/",
+    "range-value-positions": false,
+    "invalid-values": "reject"
+  },
+  {
+    "scalar-type": "string",
+    "namespace-uri": "",
+    "localname": "weapon",
+    "collation": "http://marklogic.com/collation/",
+    "range-value-positions": false,
+    "invalid-values": "reject"
+  },
+  {
+    "scalar-type": "string",
+    "namespace-uri": "",
+    "localname": "alliance",
+    "collation": "http://marklogic.com/collation/",
+    "range-value-positions": false,
+    "invalid-values": "reject"
+  },
+  {
+    "scalar-type": "double",
+    "namespace-uri": "",
+    "localname": "height",
+    "collation": "http://marklogic.com/collation/",
+    "range-value-positions": false,
+    "invalid-values": "reject"
+  }]
+}

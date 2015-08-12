@@ -48,10 +48,24 @@ var showOneCharacter = function(req, res) {
   });
 };
 
+var showCharacterImage = function(req, res) {
+  var uri = req.params.uri;
+  res.writeHead(200, { 'Content-type': 'image/png' });
+  var data = [];
+  var buffer = [];
+  db.documents.read('/image/' + uri).stream('chunked').on('data', function(chunk) {
+    data.push(chunk);
+  }).on('end', function() {
+    buffer = Buffer.concat(data);
+    res.end(buffer);
+  });
+};
+
 router.route('/').get(index);
 
 router.route('/api/characters').get(showAllCharacters);
 router.route('/api/character/:uri').get(showOneCharacter);
+router.route('/image/:uri').get(showCharacterImage);
 
 app.listen(app.get('port'));
 console.log('Magic happens on port ' + app.get('port'));

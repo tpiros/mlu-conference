@@ -7,17 +7,15 @@
   function config($routeProvider) {
     $routeProvider
     .when('/', {
-      template: '<p>{{ vm.message }}</p>',
+      templateUrl: 'public/js/main/main.html',
       controller: 'MainController',
       controllerAs: 'vm'
-    });
+    })
+    .when('/characters', {
+      templateUrl: '/public/js/character-list/character-list.html',
+      controller: 'CharacterList',
+      controllerAs: 'vm'
+    })
   }
-
-  angular.module('starwars').controller('MainController', MainController);
-  function MainController() {
-    var vm = this;
-    vm.message = 'Hello World!';
-  }
-
 
 })();

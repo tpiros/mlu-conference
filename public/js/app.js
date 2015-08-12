@@ -16,6 +16,11 @@
       controller: 'CharacterList',
       controllerAs: 'vm'
     })
+    .when('/character/:uri', {
+      templateUrl: '/public/js/character-info/character-info.html',
+      controller: 'CharacterInfo',
+      controllerAs: 'vm'
+    });
   }
 
 })();

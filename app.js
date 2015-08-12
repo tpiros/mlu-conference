@@ -41,9 +41,17 @@ var showAllCharacters = function(req, res) {
   });
 };
 
+var showOneCharacter = function(req, res) {
+  var uri = '/character/' + req.params.uri;
+  db.documents.read(uri).result().then(function(response) {
+    res.json(response);
+  });
+};
+
 router.route('/').get(index);
 
 router.route('/api/characters').get(showAllCharacters);
+router.route('/api/character/:uri').get(showOneCharacter);
 
 app.listen(app.get('port'));
 console.log('Magic happens on port ' + app.get('port'));

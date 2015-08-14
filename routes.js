@@ -68,9 +68,28 @@ var showCharacterImage = function(req, res) {
   });
 };
 
+var search = function(req, res) {
+  var searchQuery = req.params.searchQuery;
+  db.documents.query(
+    qb.where(
+      qb.collection('character'),
+      qb.parsedFrom(searchQuery)
+    )
+  ).result().then(function(response) {
+    console.log(response);
+    res.json(response);
+  }).catch(function(error) {
+    console.log(error);
+    if (error.code === 'ECONNREFUSED') {
+      res.json({error: 'MarkLogic is offline'});
+    }
+  });
+};
+
 module.exports = {
   index: index,
   showAllCharacters: showAllCharacters,
   showOneCharacter: showOneCharacter,
-  showCharacterImage: showCharacterImage
+  showCharacterImage: showCharacterImage,
+  search: search
 };

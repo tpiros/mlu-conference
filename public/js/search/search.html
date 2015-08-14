@@ -1,0 +1,15 @@
+<div>
+  <form class="form-inline" ng-submit="vm.search()">
+    <div class="form-group">
+      <label for="searchTerm">Search</label>
+      <input name="searchTerm" ng-model="vm.searchTerm" type="text" class="form-control" id="searchTerm" placeholder="Search term ...">
+    </div>
+    <button type="submit" class="btn btn-default">Search</button>
+  </form>
+
+  <ul ng-if="!vm.error && vm.searchResults">
+    <li ng-repeat="character in vm.searchResults"><a ng-href="#{{ character.uri }}">{{ character.content.name }}</a></li>
+  </ul>
+  <div ng-if="vm.error" class="alert alert-danger" role="alert">{{ vm.error }}</div>
+
+</div>

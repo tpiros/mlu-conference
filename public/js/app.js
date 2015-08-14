@@ -20,7 +20,11 @@
       templateUrl: '/public/js/character-info/character-info.html',
       controller: 'CharacterInfo',
       controllerAs: 'vm'
+    })
+    .when('/search', {
+      templateUrl: '/public/js/search/search.html',
+      controller: 'SearchController',
+      controllerAs: 'vm'
     });
   }
-
 })();

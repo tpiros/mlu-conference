@@ -11,10 +11,12 @@ app.use('/vendor', express.static(__dirname + '/vendor'));
 app.use('/', router);
 
 router.route('/').get(routes.index);
+router.route('/image/:uri').get(routes.showCharacterImage);
 
 router.route('/api/characters').get(routes.showAllCharacters);
 router.route('/api/character/:uri').get(routes.showOneCharacter);
-router.route('/image/:uri').get(routes.showCharacterImage);
+router.route('/api/search/:searchQuery').get(routes.search);
+
 
 app.listen(app.get('port'));
 console.log('Magic happens on port ' + app.get('port'));

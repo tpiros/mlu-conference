@@ -8,7 +8,11 @@
     var uri = $routeParams.uri;
     var vm = this;
     $http.get('/api/character/' + uri).success(function(response) {
-      vm.character = response[0];
+      if (!response.error) {
+        vm.character = response[0];
+      } else {
+        vm.error = response.error;
+      }
     });
   }
 })();

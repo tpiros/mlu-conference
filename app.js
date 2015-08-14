@@ -37,7 +37,12 @@ var showAllCharacters = function(req, res) {
       ).slice(1, total)
     ).result().then(function(response) {
       res.json(response);
-    });
+    })
+  }).catch(function(error) {
+    console.log(error);
+    if (error.code === 'ECONNREFUSED') {
+      res.json({error: 'MarkLogic is offline'});
+    }
   });
 };
 
@@ -45,6 +50,11 @@ var showOneCharacter = function(req, res) {
   var uri = '/character/' + req.params.uri;
   db.documents.read(uri).result().then(function(response) {
     res.json(response);
+  }).catch(function(error) {
+    console.log(error);
+    if (error.code === 'ECONNREFUSED') {
+      res.json({error: 'MarkLogic is offline'});
+    }
   });
 };
 
@@ -55,6 +65,11 @@ var showCharacterImage = function(req, res) {
   var buffer = [];
   db.documents.read('/image/' + uri).stream('chunked').on('data', function(chunk) {
     data.push(chunk);
+  }).on('error', function(error) {
+    console.log(error);
+    if (error.code === 'ECONNREFUSED') {
+      res.json({error: 'MarkLogic is offline'});
+    }
   }).on('end', function() {
     buffer = Buffer.concat(data);
     res.end(buffer);

@@ -1,3 +1,4 @@
-<ul>
+<ul ng-if="!vm.error">
   <li ng-repeat="character in vm.characters"><a ng-href="#{{ character.uri }}">{{ character.content.name }}</a></li>
 </ul>
+<div ng-if="vm.error" class="alert alert-danger" role="alert">{{ vm.error }}</div>

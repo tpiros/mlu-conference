@@ -1,3 +1,6 @@
-<h1>{{ vm.character.content.name }}</h1>
-<p>{{ vm.character.content.bio }}</p>
-<img ng-src="{{ vm.character.content.binary }}">
+<div ng-if="!vm.error">
+  <h1>{{ vm.character.content.name }}</h1>
+  <p>{{ vm.character.content.bio }}</p>
+  <img ng-src="{{ vm.character.content.binary }}">
+</div>
+<div ng-if="vm.error" class="alert alert-danger" role="alert">{{ vm.error }}</div>

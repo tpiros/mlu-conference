@@ -74,10 +74,18 @@ var search = function(req, res) {
     qb.where(
       qb.collection('character'),
       qb.parsedFrom(searchQuery)
-    )
+    ).withOptions({ debug: true })
   ).result().then(function(response) {
-    console.log(response);
-    res.json(response);
+    var data = {};
+    var scores = [];
+    var documents = [];
+    scores = response[0].results;
+    documents = response.slice(1, response.length);
+    data = {
+      scores: scores,
+      documents: documents
+    }
+    res.json(data);
   }).catch(function(error) {
     console.log(error);
     if (error.code === 'ECONNREFUSED') {

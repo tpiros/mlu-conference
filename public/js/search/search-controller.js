@@ -8,13 +8,21 @@
     var vm = this;
 
     vm.search = function() {
-      characterfactory.search(vm.searchTerm).then(function(response) {
-        if (!response.error) {
-          vm.results = response;
-        } else {
-          vm.error = response.error;
-        }
-      });
+      if (vm.searchTerm) {
+        console.log('here');
+        console.log(vm.searchTerm);
+        characterfactory.search(vm.searchTerm).then(function(response) {
+          if (!response.error) {
+            vm.results = response;
+            vm.error = '';
+          } else {
+            vm.error = response.error;
+          }
+        });
+      } else {
+        vm.results = '';
+        vm.error = 'Please enter a search term.';
+      }
     }
   }
 })();

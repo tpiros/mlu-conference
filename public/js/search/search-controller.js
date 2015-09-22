@@ -9,8 +9,6 @@
 
     vm.search = function() {
       if (vm.searchTerm) {
-        console.log('here');
-        console.log(vm.searchTerm);
         characterfactory.search(vm.searchTerm).then(function(response) {
           if (!response.error) {
             vm.results = response;

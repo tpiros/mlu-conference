@@ -2,12 +2,12 @@
   'use strict';
   angular.module('starwars').controller('CharacterInfo', CharacterInfo)
 
-  CharacterInfo.$inject = ['$http', '$routeParams'];
+  CharacterInfo.$inject = ['$http', '$routeParams', 'characterfactory'];
 
-  function CharacterInfo($http, $routeParams) {
+  function CharacterInfo($http, $routeParams, characterfactory) {
     var uri = $routeParams.uri;
     var vm = this;
-    $http.get('/api/character/' + uri).success(function(response) {
+    characterfactory.getOneCharacter(uri).then(function(response) {
       if (!response.error) {
         vm.character = response[0];
       } else {

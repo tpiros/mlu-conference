@@ -2,13 +2,13 @@
   'use strict';
   angular.module('starwars').controller('SearchController', SearchController);
 
-  SearchController.$inject = ['$http'];
+  SearchController.$inject = ['$http', 'characterfactory'];
 
-  function SearchController($http) {
+  function SearchController($http, characterfactory) {
     var vm = this;
 
     vm.search = function() {
-      $http.get('/api/search/' + vm.searchTerm).success(function(response) {
+      characterfactory.search(vm.searchTerm).then(function(response) {
         if (!response.error) {
           vm.results = response;
         } else {

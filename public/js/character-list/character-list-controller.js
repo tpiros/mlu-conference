@@ -2,11 +2,11 @@
   'use strict';
   angular.module('starwars').controller('CharacterList', CharacterList)
 
-  CharacterList.$inject = ['$http'];
+  CharacterList.$inject = ['$http', 'characterfactory'];
 
-  function CharacterList($http) {
+  function CharacterList($http, characterfactory) {
     var vm = this;
-    $http.get('/api/characters').success(function(response) {
+    characterfactory.getAllCharacters().then(function(response) {
       if (!response.error) {
         vm.characters = response;
       } else {

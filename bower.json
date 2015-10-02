@@ -12,5 +12,14 @@
     "vendor",
     "test",
     "tests"
-  ]
+  ],
+  "homepage": "https://github.com/tamaspiros/mlu-conference",
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "dependencies": {
+    "angular": "~1.4.3",
+    "angular-route": "~1.4.3",
+    "jquery": "~2.1.4"
+  }
 }

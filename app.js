@@ -53,5 +53,6 @@ router.route('/').get(index);
 router.route('/api/characters').get(showAllCharacters);
 router.route('/api/character/:uri').get(showOneCharacter);
 
-app.listen(app.get('port'));
-console.log('Magic happens on port ' + app.get('port'));
+app.listen(app.get('port'), function() {
+  console.log('Magic happens on port ' + app.get('port'));
+});

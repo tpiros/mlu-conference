@@ -6,8 +6,8 @@
 
   function CharacterList($http) {
     var vm = this;
-    $http.get('/api/characters').success(function(response) {
-      vm.characters = response;
+    $http.get('/api/characters').then(function(response) {
+      vm.characters = response.data;
     });
   }
 })();

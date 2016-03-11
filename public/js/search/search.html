@@ -6,9 +6,8 @@
     <button type="submit" class="btn btn-info">Search</button>
   </form>
 
-  <ul ng-if="!vm.error && vm.results">
+  <ul ng-if="vm.results">
     <li ng-repeat="result in vm.results.documents"><a ng-href="#{{ result.uri }}">{{ result.content.name }}</a> <small>(score: {{ vm.results.scores[$index].score }})</small></li>
   </ul>
-  <div ng-if="vm.error && !vm.results" class="alert alert-danger" role="alert">{{ vm.error }}</div>
 
 </div>

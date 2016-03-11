@@ -7,11 +7,9 @@
   function CharacterList($http, characterfactory) {
     var vm = this;
     characterfactory.getAllCharacters().then(function(response) {
-      if (!response.error) {
-        vm.characters = response;
-      } else {
-        vm.error = response.error;
-      }
+      vm.characters = response;
+    }).catch(function(error) {
+      console.log(error);
     });
   }
 })();

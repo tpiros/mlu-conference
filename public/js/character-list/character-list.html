@@ -1,7 +1,5 @@
-<div ng-if="!vm.error" ng-repeat="character in vm.characters" class="list-group">
+<div ng-repeat="character in vm.characters" class="list-group">
   <a ng-href="#{{ character.uri }}"><h4 class="list-group-item-heading">{{ character.content.name }}</h4></a>
   <p class="list-group-item-text">Homeworld: {{ character.content.homeworld }}</p>
   <p class="list-group-item-text">Alliance: {{ character.content.alliance }}</p>
 </div>
-
-<div ng-if="vm.error" class="alert alert-danger" role="alert">{{ vm.error }}</div>

@@ -8,11 +8,9 @@
     var uri = $routeParams.uri;
     var vm = this;
     characterfactory.getOneCharacter(uri).then(function(response) {
-      if (!response.error) {
-        vm.character = response[0];
-      } else {
-        vm.error = response.error;
-      }
-    });
+      vm.character = response[0];
+    }).catch(function(error) {
+      console.log(error);
+    });;
   }
 })();

@@ -52,10 +52,10 @@ var showCharacterImage = function(req, res) {
   var uri = req.params.uri;
   res.writeHead(200, { 'Content-type': 'image/png' });
   var data = [];
-  var buffer = [];
   db.documents.read('/image/' + uri).stream('chunked').on('data', function(chunk) {
     data.push(chunk);
   }).on('end', function() {
+    var buffer = new Buffer(data.length).fill(0);
     buffer = Buffer.concat(data);
     res.end(buffer);
   });
@@ -67,5 +67,6 @@ router.route('/api/characters').get(showAllCharacters);
 router.route('/api/character/:uri').get(showOneCharacter);
 router.route('/image/:uri').get(showCharacterImage);
 
-app.listen(app.get('port'));
-console.log('Magic happens on port ' + app.get('port'));
+app.listen(app.get('port'), function() {
+  console.log('Magic happens on port ' + app.get('port'));
+});

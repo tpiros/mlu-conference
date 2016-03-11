@@ -18,5 +18,6 @@ router.route('/api/character/:uri').get(routes.showOneCharacter);
 router.route('/api/search/:searchQuery').get(routes.search);
 
 
-app.listen(app.get('port'));
-console.log('Magic happens on port ' + app.get('port'));
+app.listen(app.get('port'), function() {
+  console.log('Magic happens on port ' + app.get('port'));
+});

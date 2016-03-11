@@ -7,12 +7,10 @@
   function CharacterInfo($http, $routeParams) {
     var uri = $routeParams.uri;
     var vm = this;
-    $http.get('/api/character/' + uri).success(function(response) {
-      if (!response.error) {
-        vm.character = response[0];
-      } else {
-        vm.error = response.error;
-      }
-    });
+    $http.get('/api/character/' + uri).then(function(response) {
+      vm.character = response.data[0];
+    }).catch(function(error) {
+      console.log(error);
+    });;
   }
 })();

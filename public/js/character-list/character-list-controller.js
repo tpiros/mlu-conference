@@ -6,12 +6,10 @@
 
   function CharacterList($http) {
     var vm = this;
-    $http.get('/api/characters').success(function(response) {
-      if (!response.error) {
-        vm.characters = response;
-      } else {
-        vm.error = response.error;
-      }
-    });
+    $http.get('/api/characters').then(function(response) {
+      vm.characters = response.data;
+    }).catch(function(error) {
+      console.log(error);
+    });;
   }
 })();

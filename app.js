@@ -40,9 +40,6 @@ var showAllCharacters = function(req, res) {
     })
   }).catch(function(error) {
     console.log(error);
-    if (error.code === 'ECONNREFUSED') {
-      res.json({error: 'MarkLogic is offline'});
-    }
   });
 };
 
@@ -52,9 +49,6 @@ var showOneCharacter = function(req, res) {
     res.json(response);
   }).catch(function(error) {
     console.log(error);
-    if (error.code === 'ECONNREFUSED') {
-      res.json({error: 'MarkLogic is offline'});
-    }
   });
 };
 
@@ -62,15 +56,12 @@ var showCharacterImage = function(req, res) {
   var uri = req.params.uri;
   res.writeHead(200, { 'Content-type': 'image/png' });
   var data = [];
-  var buffer = [];
   db.documents.read('/image/' + uri).stream('chunked').on('data', function(chunk) {
     data.push(chunk);
   }).on('error', function(error) {
     console.log(error);
-    if (error.code === 'ECONNREFUSED') {
-      res.json({error: 'MarkLogic is offline'});
-    }
   }).on('end', function() {
+    var buffer = new Buffer(data.length).fill(0);
     buffer = Buffer.concat(data);
     res.end(buffer);
   });
@@ -82,5 +73,6 @@ router.route('/api/characters').get(showAllCharacters);
 router.route('/api/character/:uri').get(showOneCharacter);
 router.route('/image/:uri').get(showCharacterImage);
 
-app.listen(app.get('port'));
-console.log('Magic happens on port ' + app.get('port'));
+app.listen(app.get('port'), function() {
+  console.log('Magic happens on port ' + app.get('port'));
+});

@@ -1,0 +1,7 @@
+<h1>Characters</h1>
+
+<ul>
+  <li ng-repeat="character in vm.characters">
+    <a ng-href="#{{ character.uri }}">{{ character.content.name }}</a>
+  </li>
+</ul>

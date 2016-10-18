@@ -1,6 +1,6 @@
 var connection = {
   host: 'localhost',
-  port: 5030,
+  port: 8000,
   user: 'admin',
   password: 'admin'
 };

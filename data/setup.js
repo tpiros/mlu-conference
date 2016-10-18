@@ -3,19 +3,21 @@ var fs = require('fs');
 var Promise = require('bluebird');
 var request = Promise.promisify(require('request'));
 var marklogic = require('marklogic');
-var db = marklogic.createDatabaseClient({host: '52.18.51.96', port: 5030, user: 'tpiros', password: 'r0m4'});
+var host = 'localhost';
+var port = 8000;
+var user = 'admin';
+var password = 'admin';
+var db = marklogic.createDatabaseClient({host: host, port: port, user: user, password: password});
 var qb = marklogic.queryBuilder;
 
 var runRequest = function(port, endpoint, method, data) {
-  var username = 'tpiros';
-  var password = 'r0m4'
-  var hostname = '52.18.51.96';
-  var baseURL = 'http://' + hostname + ':' + port;
+  var host = 'localhost';
+  var baseURL = 'http://' + host + ':' + port;
   return request({
     url: baseURL + endpoint,
     method: method,
     auth: {
-      user: username,
+      user: user,
       password: password,
       sendImmediately: false
     },
@@ -26,18 +28,9 @@ var runRequest = function(port, endpoint, method, data) {
   });
 };
 
-var RESTConfig = JSON.parse(fs.readFileSync('rest-api.json', 'utf-8'));
 var indexConfig = JSON.parse(fs.readFileSync('index-config.json', 'utf-8'));
 
-runRequest(8002, '/v1/rest-apis', 'POST', RESTConfig)
-.then(function(response) {
-  if (response[0].statusCode === 201) {
-    console.log(response[0].statusCode + ' - App Server ' + RESTConfig['rest-api'].name + ' has been created.');
-    return runRequest(8002, '/manage/v2/databases/' + RESTConfig['rest-api'].database + '/properties', 'PUT', indexConfig);
-  } else {
-    console.log(response[0].statusMessage);
-  }
-})
+runRequest(8002, '/manage/v2/databases/Documents/properties', 'PUT', indexConfig)
 .then(function(response) {
   if (response[0].statusCode === 204) {
     console.log(response[0].statusCode + ' - Indexes have been created.');
